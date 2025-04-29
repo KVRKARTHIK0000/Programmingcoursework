@@ -1,5 +1,5 @@
 /**
- * Write a description of class RecruitmentSystem here.
+ * Write a description of class RecruitmentSystem here...
  *
  * @author (your name)
  * @version (a version number or a date)
