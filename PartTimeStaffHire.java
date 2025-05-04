@@ -1,9 +1,19 @@
-// PartTimeStaffHire
 /**
- * Write a description of class PartTimeStaffHire here.
- *
- * @author (your name)
- * @version (a version number or a date)
+ * Write a description of class PartTimeStaffHire.
+ * 
+ * This class PartTimeStaffHire inherits the super class StaffHire
+ * This class has 4 attributes as shown below.
+ * WorkingHour  - a whole number
+ * WagesPerHour - a double Integer
+ * Shifts       - a String
+ * Terminated   - a boolean true or false
+ * 
+ * This class will contain getter, setter and display method
+ * 
+ * constructor will take 11 attributes including 8 attributes of the Staff Hire
+ * 
+ * @author (Kavin Ravikumar)
+ * @version (1.0)
  */
 public class PartTimeStaffHire extends StaffHire
 {
@@ -14,6 +24,7 @@ public class PartTimeStaffHire extends StaffHire
     private boolean terminated = false;
 
     // Constructor for objects of class PartTimeStaffHire 
+    // Constuctor will call the Staff Hire constructor by passing the required parameters
     public PartTimeStaffHire(int    vNum, 
                     String  dType,
                     String  jType,
@@ -75,7 +86,8 @@ public class PartTimeStaffHire extends StaffHire
     {
         this.terminated = blnTerm;
     }
- 
+    
+    //display method to output the Part time Staff Hire Details
     public void displayPartTimeStaffHireDetails()
     {
         System.out.println(" *************************************************************");

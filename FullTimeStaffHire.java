@@ -1,9 +1,17 @@
-//FullTimeStaffHire
 /**
- * Write a description of class FullTimeStaffHire here.
- *
- * @author (your name)
- * @version (a version number or a date)
+ * Write a description of class FulTimeStaffHire.
+ * 
+ * This class FullTimeStaffHire inherits the super class StaffHire
+ * This class has 2 attributes as shown below.
+ * Salary                       - a double Integer
+ * WekklyFractionalWorkingHours - a double Integer
+ * 
+ * This class will contain getter, setter and display method
+ * 
+ * constructor will take 10 attributes including 8 attributes of the Staff Hire
+ * 
+ * @author (Kavin Ravikumar)
+ * @version (1.0)
  */
 public class FullTimeStaffHire extends StaffHire
 {
@@ -12,7 +20,8 @@ public class FullTimeStaffHire extends StaffHire
     private int     weeklyFractionalHours = 0;
     private boolean staffJoined=false;
 
-    //Constructor for objects of class FullTimeStaffHire
+    // Constructor for objects of class FullTimeStaffHire 
+    // Constuctor will call the Staff Hire constructor by passing the required parameters
     public FullTimeStaffHire(int    vNum, 
                     String  dType,
                     String  jType,
@@ -59,17 +68,18 @@ public class FullTimeStaffHire extends StaffHire
         this.weeklyFractionalHours = wFH;
     }
     
+    //display method to output the Part time Staff Hire Details
     public void displayFullStaffHireDetails()
     {
-            System.out.println(" *************************************************************");
-            System.out.println(" Full Time Staff Details                                      "); 
-            System.out.println(" *************************************************************"); 
-            super.displayStaffDetails();
-            if (this.salary > 0) {
-                System.out.println(" Salary                  : " + Double.toString(this.salary));   
-                System.out.println(" Weekly Fractional Hours : " + Integer.toString(this.weeklyFractionalHours));      
-            }
-            System.out.println(" *************************************************************");
+        System.out.println(" *************************************************************");
+        System.out.println(" Full Time Staff Details                                      "); 
+        System.out.println(" *************************************************************"); 
+        super.displayStaffDetails();
+        if (this.salary > 0) {
+            System.out.println(" Salary                  : " + Double.toString(this.salary));   
+            System.out.println(" Weekly Fractional Hours : " + Integer.toString(this.weeklyFractionalHours));      
+        }
+        System.out.println(" *************************************************************");
     }
     
  }

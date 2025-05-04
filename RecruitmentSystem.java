@@ -1,8 +1,10 @@
 /**
- * Write a description of class RecruitmentSystem here...
- *
- * @author (your name)
- * @version (a version number or a date)
+ * Write a description of class RecruitmentSystem.
+ * This is the main class that draws GUI 
+ * This class imports all necessary jave packages
+ * This class contains all the methods to validate, add and display the staff details.
+ * @author (Kavin Ravikumar)
+ * @version (1.0)
  */
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -77,7 +79,9 @@ public class RecruitmentSystem
     private FullTimeStaffHire FTStaffHire;
     private PartTimeStaffHire PTStaffHire;
        
-    
+    //Create an object of RecruitmentSystem
+    //Invoke drawRecSysGUI method assoicated to the newly created object
+    //Initialize Staff Hire Details Array List
     public static void main (String[] param)
     {
         RecruitmentSystem rSystem = new RecruitmentSystem();
@@ -113,7 +117,6 @@ public class RecruitmentSystem
         jplbtnStaffHire.setLayout(new GridLayout(2,4,20,10));
         
         // Create the individual input GUI Components
-        // Vacancy Number - Label & TextField with FocusListener
         jlblVacancyNumber = new JLabel("Vacancy Number :");
         jlblVacancyNumber.setFont(new Font("Calibri", Font.BOLD, 20));
         jtxtVacancyNumber = new JTextField();
@@ -300,6 +303,10 @@ public class RecruitmentSystem
         
     }
     
+    // Method: Validates the required inputs for creation of the Full Time Staff Hire
+    // Create a new object of Full Time Staff Hire by calling the constructor with required values
+    // Add the newly created Full Time Staff Hire to the Staff Hire Details Array List
+    // Display a showMessageDialog on success or error
     public void AddFullTimeStaff()
     {
         //Validate the inputs
@@ -339,7 +346,11 @@ public class RecruitmentSystem
             }
         }
     }
-    
+
+    // Method: Validates the required inputs for creation of the Part Time Staff Hire
+    // Create a new object of Part Time Staff Hire by calling the constructor with required values
+    // Add the newly created Part Time Staff Hire to the Staff Hire Details Array List
+    // Display a showMessageDialog on success or error
     public void AddPartTimeStaff()
     {
         Boolean blnJoined;
@@ -382,7 +393,11 @@ public class RecruitmentSystem
         }
     }
     
-
+     // Method: Validates the required inputs for setting the salary of Full Time Staff
+     // Loop through the Staff Hire Details Array List to check for the correct Vacancy Number
+     // Checks whether the Staff is a Permanent staff 
+     // Checks whether the Staff has joined and then set the Salary
+     // Display a showMessageDialog on success or error
      public void SetSalaryFullTimeStaff()
      {
       Boolean blnSuccess   = false;
@@ -404,16 +419,10 @@ public class RecruitmentSystem
                             String  strJobType = FTHire.getjobType();
                             if (intVNum == intFVNum)
                             {
-                                strJobType  = strJobType.toUpperCase();
-                                System.out.println("strJobType.toUpperCase() : " + strJobType);
-                                if (strJobType  ==  "PERMANENT")
+                                strJobType = strJobType.toUpperCase();
+                                if (strJobType.equals("PERMANENT"))
                                 {   
-                                    JOptionPane.showMessageDialog(this.jfrmRecSys, "Salary can be only to a Permanent staff", "Invalid Staff Job Type", JOptionPane.ERROR_MESSAGE);
-                                    blnSuccess = false;
-                                    break;
-                                }
-                                else
-                                {   Boolean blnJoined = FTHire.getjoined();
+                                    Boolean blnJoined = FTHire.getjoined();
                                     if (blnJoined)
                                     {
                                         Double Salary = Double.parseDouble(this.jtxtSalary.getText());
@@ -428,13 +437,16 @@ public class RecruitmentSystem
                                         break;
                                     }
                                 }
-                            }
-                            else
-                            {
-                                blnSuccess = false;
+                                else
+                                {
+                                    JOptionPane.showMessageDialog(this.jfrmRecSys, "Salary can be only to a Permanent staff", "Invalid Staff Job Type", JOptionPane.ERROR_MESSAGE);
+                                    blnSuccess = false;
+                                    break;
+                                }
+
                             }
                         }
-                    catch (ClassCastException e)
+                        catch (ClassCastException e)
                         {
                             JOptionPane.showMessageDialog(this.jfrmRecSys, e.getMessage(), "Application Error", JOptionPane.ERROR_MESSAGE);
                             blnSuccess = false;
@@ -453,7 +465,7 @@ public class RecruitmentSystem
             }
             else
             {
-                JOptionPane.showMessageDialog(this.jfrmRecSys, "Error in Adding/Modifing the salary. Check the required information is present", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this.jfrmRecSys, "Staff not found or error in setting the sarlary. Check the required information is present", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } 
         catch(NumberFormatException e) 
@@ -463,7 +475,11 @@ public class RecruitmentSystem
                 blnSuccess   = false;
         }
      } 
-    
+ 
+    // Method: Validates the required inputs for setting the shifts of a Part Time Staff
+    // Loop through the Staff Hire Details Array List to check for the correct Vacancy Number
+    // If the Staff is a Permanent staff then display an error else set the shift
+    // Display a showMessageDialog on success or error   
     public void SetWorkingShiftsPartTimeStaff()
     {
         Boolean blnSuccess   = false;
@@ -485,7 +501,8 @@ public class RecruitmentSystem
                                 String strJobType = PTSHire.getjobType();
                                 if (intVNum == intFVNum)
                                 {
-                                    if (strJobType == "Permament")
+                                      strJobType = strJobType.toUpperCase();
+                                    if (strJobType.equals("PERMANENT"))
                                     {  
                                         JOptionPane.showMessageDialog(this.jfrmRecSys, "Shift cannot be set on a Permanent Staff.", "Error", JOptionPane.ERROR_MESSAGE);
                                         blnSuccess = false;
@@ -533,7 +550,11 @@ public class RecruitmentSystem
                 blnSuccess   = false;
             }
     }
-    
+
+   // Method: Validates the required inputs for terminating a Part Time Staff
+   // Loop through the Staff Hire Details Array List to check for the correct Vacancy Number
+   // Terminate the staff and set the details to null and Terminate flag to true
+   // Display a showMessageDialog on success or error    
    public void TerminatePartTimeStaff()
    {
         Boolean blnSuccess = false;
@@ -607,10 +628,14 @@ public class RecruitmentSystem
         }
     }
         
+    // Method: Validates the required inputs to display a staff
+    // Loop through the Staff Hire Details Array List 
+    // If Full Time Staff cast Staff Hire object to Full Time Staff and get the values and display
+    // If Part Time Staff cast Staff Hire object to Part Time Staff and get the values and display
+    // Display a showMessageDialog on errors
     public void DisplayNumber()
     {
         Boolean blnStaffFound = false;
-        //int DisplayNum = ValidDNumber(Integer.parseInt(jtxtDisplayNumber.getText()));
         try
         {
             int DisplayNum = Integer.parseInt(jtxtDisplayNumber.getText());
@@ -629,7 +654,7 @@ public class RecruitmentSystem
                             {
                                 jtxtVacancyNumber.setText(Integer.toString(intVnum));
                                 jtxtDesignation.setText(PTSH.getdesignationType());
-                jtxtJobType.setText(PTSH.getjobType());
+                                jtxtJobType.setText(PTSH.getjobType());
                                 jtxtJoiningDate.setText(PTSH.getjoiningDate());
                                 jtxtStaffName.setText(PTSH.getstaffName());
                                 jtxtAppointedBy.setText(PTSH.getappointedBy());
@@ -680,7 +705,7 @@ public class RecruitmentSystem
                 }
                 if (!blnStaffFound) 
                 {       
-                    JOptionPane.showMessageDialog(this.jfrmRecSys, "The requested stafff details not found!", "Incorrect Display Number", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this.jfrmRecSys, "The requested staff details not found!", "Incorrect Display Number", JOptionPane.ERROR_MESSAGE);
                     jtxtDisplayNumber.requestFocus();
                 }                
             }
@@ -697,6 +722,7 @@ public class RecruitmentSystem
         }
     }
     
+    // Method to clear all GUI Fields
     public void ClearFields()
     {
         jtxtVacancyNumber.setText("0");
@@ -715,7 +741,8 @@ public class RecruitmentSystem
         jchkTerminate.setSelected(false);
         jtxtDisplayNumber.setText(Integer.toString(StaffHireDetails.size()));
     }
-    
+   
+    // Method to validate the inputted Job Type and return true / false
     public boolean ValidJobType() 
     {
         String strJobType = this.jtxtJobType.getText().trim();
@@ -726,6 +753,7 @@ public class RecruitmentSystem
             return false;
         } else 
         {
+          // change the job type to Uppercase and check
           switch(strJobType.toUpperCase()) 
           {
               case "PERMANENT": 
@@ -735,13 +763,14 @@ public class RecruitmentSystem
               case "CONTRACT": 
                   return true;
               default:
-                  JOptionPane.showMessageDialog(this.jfrmRecSys, "Enter a valid Job Type - Permament / Temporary / Contract" , "Invalid Job Type", JOptionPane.ERROR_MESSAGE);
+                  JOptionPane.showMessageDialog(this.jfrmRecSys, "Enter a valid Job Type - Permanent / Temporary / Contract" , "Invalid Job Type", JOptionPane.ERROR_MESSAGE);
                   this.jtxtJobType.requestFocus();
                   return false;                 
           }
         }
     }
-    
+
+    // Method to validate the inputted Weekly Fractional Hours and return true / false
     public boolean ValidWFHours()
     {
            
@@ -764,7 +793,8 @@ public class RecruitmentSystem
                 return false;
             }
     }
-    
+
+    // Method to validate the inputted Working Hours and return true / false
     public boolean ValidWHours()
     {
            try 
@@ -772,7 +802,7 @@ public class RecruitmentSystem
                 int intWHours =  Integer.parseInt(this.jtxtWorkingHours.getText());
                 if ( intWHours < 1 || intWHours > 14 )
                 {
-                 JOptionPane.showMessageDialog(this.jfrmRecSys, "Workhing hour is >=1 or <=14!", "Invalid Working Hours", JOptionPane.ERROR_MESSAGE);
+                 JOptionPane.showMessageDialog(this.jfrmRecSys, "Working hour is >=1 or <=14!", "Invalid Working Hours", JOptionPane.ERROR_MESSAGE);
                  this.jtxtWorkingHours.requestFocus();
                  return false; 
                 }
@@ -787,7 +817,8 @@ public class RecruitmentSystem
                 return false;
             }
     }
-    
+
+    // Method to validate the inputted Vacancy Number and check whether Vacancy Number exists already and return true / false
     public boolean ValidVNumber()
     {
         boolean rtnvalue = true;
@@ -854,7 +885,8 @@ public class RecruitmentSystem
             }
         return rtnvalue;
     }
-    
+
+    // Method to validate the inputted Joining Date and return true / false
     public boolean ValidJDate() 
     {
           SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
@@ -879,7 +911,8 @@ public class RecruitmentSystem
                 return false;
           }
     }  
-    
+
+    // Method to validate the inputted Designation and return true / false
     public boolean ValidDesign() 
     {
         if (this.jtxtDesignation.getText().trim().isEmpty()) {
@@ -891,7 +924,8 @@ public class RecruitmentSystem
             return true;
         }
     } 
-    
+
+    // Method to validate the inputted Staff Name and return true / false
     public boolean ValidStaffName() 
     {
         if (this.jtxtStaffName.getText().trim().isEmpty()) {
@@ -902,12 +936,13 @@ public class RecruitmentSystem
         else {
             return true;
         }
-    }   
-    
+    }  
+ 
+    // Method to validate the inputted Appointed By and return true / false
     public boolean ValidAppBy() 
     {
         if (this.jtxtAppointedBy.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this.jfrmRecSys, "Enter a valid Appointed", "Invalid Appointed By", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this.jfrmRecSys, "Enter a valid Appointed By", "Invalid Appointed By", JOptionPane.ERROR_MESSAGE);
             this.jtxtAppointedBy.requestFocus();
             return false;
         }
@@ -916,6 +951,7 @@ public class RecruitmentSystem
         }
     }   
     
+    // Method to validate the inputted Qualification and return true / false
     public boolean ValidQuali() 
     {
         if (this.jtxtQualification.getText().trim().isEmpty()) {
@@ -926,8 +962,9 @@ public class RecruitmentSystem
         else {
             return true;
         }
-    }   
-
+    }  
+ 
+    // Method to validate the inputted Salaray and return true / false
     public boolean ValidSalary()
     {
            try {
@@ -948,6 +985,7 @@ public class RecruitmentSystem
             }
     }   
     
+    // Method to validate the inputted Working Per Hours and return true / false
     public boolean ValidWPHour()
     {
            try {
@@ -968,6 +1006,7 @@ public class RecruitmentSystem
             }
     } 
     
+    // Method to validate the inputted Display Number (Vacancy Number) and return -1 or Display Number (Vacancy Number)
     public int ValidDNumber(int DisplayNum)
     {
            try {
@@ -993,6 +1032,7 @@ public class RecruitmentSystem
             }
     }
     
+    // Method to validate the inputted Shifts and return true / false
     public boolean ValidShifts() 
     {
         String strShitfs = this.jtxtShifts.getText().trim();
@@ -1019,6 +1059,7 @@ public class RecruitmentSystem
         }
     }
     
+    // Method to output all the staff stored in the arraylist
     public void  DisplayAll()
     {
        for (int ctr = 0; ctr < StaffHireDetails.size(); ctr++) 
