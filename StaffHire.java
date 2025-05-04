@@ -1,7 +1,5 @@
-// StaffHire
-
 /**
- * Write a description of class StaffHire here.
+ * Write a description of class StaffHire.
  * 
  * This class has 8 attributes as shown below.
  * Vacancy Number - a whole number
